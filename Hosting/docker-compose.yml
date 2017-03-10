@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+
+# Gateway API
+
+    gateway:
+        image: masterclasslocal/gateway
+        depends_on:
+            - requests
+            - results
+            - messageBroker
+            - ui
+        ports:
+            - '${GATEWAY_PORT}:80'
+
+# User Interface
+
+    ui:
+        image: masterclasslocal/ui
+
+# Microservices
+
+    # Requests
+
+    requests:
+        image: masterclasslocal/requests
+        depends_on:
+            - requestsDb
+            - messageBroker
+        environment:
+            Hosting__VirtualDirectory: 'requests'
+            MessageBroker__Hostname: 'messageBroker'  
+            RequestsDb__DbType: 'PostgreSQL'
+            RequestsDB__ConnectionString: 'Server=requestsDb;Database=Requests;Username=postgres;'
+    requestsDb:
+        image: postgres:9
+
+    # Results
+
+    results:
+        image: masterclasslocal/results
+        depends_on:
+            - resultsDb
+        environment:
+            Hosting__VirtualDirectory: 'results'
+            ResultsDb__DbType: 'PostgreSQL'
+            ResultsDb__ConnectionString: 'Server=resultsDb;Database=Results;Username=postgres;'
+    resultsDb:
+        image: postgres:9
+
+# Shared / Infra
+
+    # Message Broker
+
+    messageBroker:
+        image: rabbitmq:3.6.6-management
+        hostname: 'rabbitMQ'
+        ports:
+            - 3001:5672

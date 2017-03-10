@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+    results:
+        image: masterclasslocal/results
+        depends_on:
+            - dbServer
+        ports:
+            - '3000:80'
+        environment:
+            ResultsDb__DbType: 'PostgreSQL'
+            ResultsDb__ConnectionString: 'Server=dbServer;Database=Results;Username=postgres;'
+    dbServer:
+        image: postgres:9

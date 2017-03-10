@@ -1,0 +1,11 @@
+<md-card *ngIf="batch">
+  <md-card-title>{{batch.description}}</md-card-title>
+  <md-card-content>
+    Created: {{batch.created | date:'mediumTime'}}
+  </md-card-content>
+</md-card>
+
+<template [ngIf]="requests$">
+  <request *ngFor="let request of requests$ | async" [request]="request">
+  </request>
+</template>

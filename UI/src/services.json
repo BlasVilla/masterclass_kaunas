@@ -1,0 +1,4 @@
+{
+  "requestsUrl": "http://localhost:3000/requests",
+  "resultsUrl": "http://localhost:3000/results"
+}

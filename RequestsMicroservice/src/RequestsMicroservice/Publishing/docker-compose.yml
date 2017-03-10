@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+    requests:
+        image: masterclasslocal/requests
+        depends_on:
+            - dbServer
+            - messageBroker
+        ports:
+            - '3000:80'
+        environment:
+            MessageBroker__Hostname: 'messageBroker'            
+            RequestsDb__DbType: 'PostgreSQL'
+            RequestsDb__ConnectionString: 'Server=dbServer;Database=Requests;Username=postgres;'
+    dbServer:
+        image: postgres:9
+    messageBroker:
+        image: rabbitmq:3.6.6-management
+        hostname: 'rabbitMQ'
+        ports:
+            - 2000:15672

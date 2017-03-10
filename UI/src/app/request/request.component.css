@@ -1,0 +1,32 @@
+md-card {
+  height: 7px;
+}
+
+.index-cell {
+  display: inline-block;
+  width: 30px;
+}
+
+.x-cell {
+  display: inline-block;
+  width: 30px;
+}
+
+.method-cell {
+  display: inline-block;
+  margin-left:50px;
+  width: 100px;
+}
+
+.value-cell {
+  display: inline-block;
+  margin-left:50px;
+  width: 100px;
+}
+
+.duration-cell {
+  display: inline-block;
+  margin-left:50px;
+  width: 200px;
+  font-size: small;
+}

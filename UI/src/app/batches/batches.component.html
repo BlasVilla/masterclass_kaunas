@@ -1,0 +1,17 @@
+<button (click)="showDialog()" md-fab>
+  <md-icon class="md-24">add</md-icon>
+</button>
+
+<new-batch *ngIf="showNewDialog" (onCreated)="hideDialog()" (onCanceled)="hideDialog()">
+</new-batch>
+
+<md-card *ngFor="let batch of batches$ | async">
+  <md-card-title>{{batch.description}}</md-card-title>
+  <md-card-content>
+    Created: {{batch.created | date:'mediumTime'}}
+  </md-card-content>
+  <md-card-actions align="end">
+    <button md-button color="primary" [routerLink]="['/batches', batch.batchId]">DETAILS</button>
+    <button md-raised-button color="primary" (click)="delete(batch.batchId)">DELETE</button>
+  </md-card-actions>
+</md-card>

@@ -1,0 +1,13 @@
+<md-card>
+  <md-input-container>
+    <input mdInput placeholder="description" [(ngModel)]="newBatch.description" />
+  </md-input-container>
+  <md-input-container>
+    <input mdInput placeholder="batch size" [(ngModel)]="batchSize" />
+  </md-input-container>
+
+  <div align="right">
+    <button md-raised-button color="primary" (click)="create()">CREATE</button>
+    <button md-button (click)="cancel()">CANCEL</button>
+  </div>
+</md-card>

@@ -1,0 +1,21 @@
+<md-card *ngIf="request">
+  <md-card-content>
+    <span class="index-cell">
+      {{request.index}}
+    </span>
+    <span class="x-cell">
+      {{request.x | number:'1.2-5'}}
+    </span>
+    <template [ngIf]="result">
+      <span class="method-cell">
+        {{result.method}}
+      </span>
+      <span class="value-cell">
+        {{result.value | number:'1.2-4'}}
+      </span>
+      <span class="duration-cell">
+        {{duration}} ms
+      </span>
+    </template>
+  </md-card-content>
+</md-card>
